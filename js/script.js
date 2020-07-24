@@ -1,6 +1,6 @@
-function stampaMese(mese) {
+function stampaMese(dataInizio) {
 
-    var giorni = mese.daysInMonth();
+    var giorni = dataInizio.daysInMonth();
 
     var template = $('#template').html();
     var compiled = Handlebars.compile(template);
@@ -9,7 +9,7 @@ function stampaMese(mese) {
 
     for (var i = 1; i <= giorni; i++) {
 
-        var dateComplete = moment({ year:mese.year(), month:mese.month(), day:i});
+        var dateComplete = moment({ year:dataInizio.year(), month:dataInizio.month(), day:i});
         var giorniHTML = compiled({
 
             'value' : i,
@@ -23,10 +23,10 @@ function stampaMese(mese) {
 
 }
 
-function stampaFeste(mese) {
+function stampaFeste(dataInizio) {
 
-    var annoSelez = mese.year();
-    var meseSelez = mese.month();
+    var annoSelez = dataInizio.year();
+    var meseSelez = dataInizio.month();
 
     $.ajax({
 
@@ -60,9 +60,42 @@ function stampaFeste(mese) {
 
 function init() {
 
-    var mese = moment('2018-01-01');
-    stampaMese(mese);
-    stampaFeste(mese);
+    var i = 0;
+
+    var data = ["2018-01-01", "2018-02-01", "2018-03-01", "2018-04-01", "2018-05-01", "2018-06-01", "2018-07-01", "2018-08-01", "2018-09-01", "2018-10-01", "2018-11-01", "2018-12-01"];
+    var mesi = ['Gennaio', 'Febbraio', 'Marzo', ' Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
+
+    $('.fa-arrow-circle-right').click(function(){
+         i++; 
+         console.log(i);
+         if (i == 11){
+            $('.fa-arrow-circle-right').hide();
+        }
+       
+         var dataInizio = moment(data[i]);
+         $('#mese').html(mesi[dataInizio.month()]);
+         stampaMese(dataInizio);
+         //stampaFeste(dataInizio);
+
+        });
+    $('.fa-arrow-circle-left').click(function(){
+        i--; 
+        if (i == 0){
+            $('.fa-arrow-circle-left').hide();
+        }
+      
+        var dataInizio = moment(data[i]);
+        $('#mese').html(mesi[dataInizio.month()]);
+        stampaMese(dataInizio);
+        //stampaFeste(dataInizio);
+
+    });
+
+    var dataInizio = moment(data[i]);
+    $('#mese').html(mesi[dataInizio.month()]);
+
+    stampaMese(dataInizio);
+    //stampaFeste(dataInizio);
 
 }
 
