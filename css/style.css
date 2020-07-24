@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.giorni-mese {
+    list-style: none;
+    width: 700px;
+}
+
+.giorni-mese li{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: solid 1px black;
+}
+
+.feste{ 
+    color: red;
+}
