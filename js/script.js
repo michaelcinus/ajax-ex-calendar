@@ -42,9 +42,9 @@ function stampaFeste(dataInizio) {
             var feste = data['response'];
             for (var i = 0; i < feste.length; i++) {
 
-                var elemento = $(".giorni-mese li[data-datecomplete='"+ feste[i].date + "']");
-                elemento.addCLass('feste');
+               var elemento = $(".giorni-mese li[data-datecomplete='"+ feste[i].date + "']");
                 elemento.append(" " + feste[i].name);
+                elemento.addCLass('feste');qq
                
             }
 
@@ -77,7 +77,7 @@ function init() {
          var dataInizio = moment(data[i]);
          $('#mese').html(mesi[dataInizio.month()]);
          stampaMese(dataInizio);
-         //stampaFeste(dataInizio);
+         stampaFeste(dataInizio);
 
         });
     $('.fa-arrow-circle-left').click(function(){
@@ -90,7 +90,7 @@ function init() {
         var dataInizio = moment(data[i]);
         $('#mese').html(mesi[dataInizio.month()]);
         stampaMese(dataInizio);
-        //stampaFeste(dataInizio);
+        stampaFeste(dataInizio);
 
     });
 
@@ -98,7 +98,8 @@ function init() {
     $('#mese').html(mesi[dataInizio.month()]);
 
     stampaMese(dataInizio);
-    //stampaFeste(dataInizio);
+    stampaFeste(dataInizio);
+
 
 }
 
